@@ -8,13 +8,13 @@
 #include <arpa/inet.h>
 
 char str[256];
-char cmd[16], ip[50], port[5];
+char cmd[16], ip[50], port[5], tmp[50];
 
 void input() {
     printf("Nhap lenh: ");
     fgets(str, sizeof(str), stdin);
 
-    int ret = sscanf(str, "%s%s%s", &cmd, &ip, &port);
+    int ret = sscanf(str, "%s%s%s%s", &cmd, &ip, &port, &tmp);
     if (ret < 3)
     {
         printf("ERROR thieu tham so\n");
