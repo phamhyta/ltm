@@ -90,13 +90,7 @@ int main()
     }
 
     fclose(f);
-    
-    /*char filename[256];
-    int name_size ;
-    recv(client, &name_size, sizeof(int), 0);
 
-    recv(client, filename, name_size, 0);
-    filename[name_size] = 0;*/
     char *filenewsend = &new_send;
 
     FILE *fn = fopen(filenewsend, "wb");
