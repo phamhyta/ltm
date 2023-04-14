@@ -42,7 +42,6 @@ int main()
     addr.sin_family = AF_INET;
     addr.sin_addr.s_addr = inet_addr(&ip);
     addr.sin_port = htons(atoi(&port));
-    //printf("ip: %s \n port: %s \n", addr.sin_addr.s_addr, addr.sin_port);
 
     int ret = connect(client, (struct sockaddr *)&addr, sizeof(addr));
     if (ret == -1)
