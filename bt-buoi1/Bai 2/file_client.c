@@ -30,17 +30,11 @@ int main()
     filename[name_size] = 0;
 
     char buf[2048]; 
-
-    while (1)
-    {
-        ret = recv(client, buf, sizeof(buf), 0);
-        if (ret <= 0)
-            break;
-        if (ret < sizeof(buf))
+    ret = recv(client, buf, sizeof(buf), 0);
+    if (ret < sizeof(buf))
             buf[ret] = 0;
 
         printf("Server: %s\n", buf);
-    }
 
     while (1)
     {
