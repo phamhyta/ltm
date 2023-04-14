@@ -100,14 +100,14 @@ int main()
     char *filenewsend = &new_send;
 
     FILE *fn = fopen(filenewsend, "wb");
-
+    char buf2[2048];
 
     while (1)
     {
-        ret = recv(client, buf, sizeof(buf), 0);
-        if (ret <= 0)
+        int ret2 = recv(client, buf2, sizeof(buf2), 0);
+        if (ret2 <= 0)
             break;
-        fwrite(buf, 1, ret, fn);
+        fwrite(buf2, 1, ret2, fn);
     }
 
     fclose(fn);
