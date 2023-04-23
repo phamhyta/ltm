@@ -6,7 +6,32 @@
 #include <arpa/inet.h>
 
 #define BUF_SIZE 40
-#define PORT 9000
+char str[256];
+char cmd[32], ipadd[20], port[5], tmp[50], file_send[50];
+
+void input() {
+    printf("Nhap lenh: ");
+    fgets(str, sizeof(str), stdin);
+
+    int ret = sscanf(str, "%s%s%s%s%s", &cmd, &ipadd, &port, &file_send, &tmp);
+    if (ret < 4)
+    {
+        printf("ERROR thieu tham so\n");
+        return ;
+    }
+
+    if (ret > 4)
+    {
+        printf("ERROR thua tham so\n");
+        return ;
+    }
+
+    if (strcmp(cmd, "udp_file_sender") != 0)
+    {
+        printf("ERROR sai ma lenh\n");
+        return ;
+    }
+}
 
 int main(int argc, char *argv[]) {
     int sock;
@@ -15,12 +40,7 @@ int main(int argc, char *argv[]) {
     char buffer[BUF_SIZE];
     int bytes_read, bytes_sent;
     FILE *fp;
-
-    // if (argc < 2) {
-    //     printf("Usage: %s send.txt\n", argv[0]);
-    //     exit(1);
-    // }
-    // printf("aaa");
+    input();
 
     // create socket
     if ((sock = socket(AF_INET, SOCK_DGRAM, 0)) < 0) {
@@ -31,18 +51,18 @@ int main(int argc, char *argv[]) {
     // setup server address
     memset(&server_addr, 0, sizeof(server_addr));
     server_addr.sin_family = AF_INET;
-    server_addr.sin_port = htons(PORT);
-    server_addr.sin_addr.s_addr = inet_addr("127.0.0.1"); // change this to receiver's IP address
+    server_addr.sin_port = htons(atoi(&port));
+    server_addr.sin_addr.s_addr = inet_addr(ipadd); // change this to receiver's IP address
 
     // open file for reading
-    strcpy(filename, "send.txt");
-    fp = fopen(filename, "rb");
+    fp = fopen(file_send, "rb");
     if (fp == NULL) {
         perror("Failed to open file");
         exit(1);
     }
 
     // send filename
+    strcat(filename, file_send);
     bytes_sent = sendto(sock, filename, strlen(filename), 0, (struct sockaddr*)&server_addr, sizeof(server_addr));
     if (bytes_sent < 0) {
         perror("Failed to send filename");
@@ -56,7 +76,6 @@ int main(int argc, char *argv[]) {
             perror("Failed to send file content");
             exit(1);
         }
-        usleep(1000); // delay for a short time to reduce sending speed
     }
 
     printf("File sent successfully\n");
