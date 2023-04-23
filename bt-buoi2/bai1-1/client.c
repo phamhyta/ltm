@@ -9,37 +9,39 @@
 
 int main()
 {
+    char buf[512], computer[64];
+    int num_disk;
     int client = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
-
     struct sockaddr_in addr;
     addr.sin_family = AF_INET;
     addr.sin_addr.s_addr = inet_addr("127.0.0.1");
     addr.sin_port = htons(9000);
-
     int ret = connect(client, (struct sockaddr *)&addr, sizeof(addr));
-    if (ret == -1)
-    {
+    if (ret == -1) {
         perror("connect() failed");
         return 1;
     }
-
-    char arr[100][1000];
-    char name[10];
-    int numbuer_disk;
-    char buf[256];
-    printf("Vui long nhap thong tin: \n");
-    printf("Ten may: ");
-    fgets(name, sizeof(name), stdin);
-    printf("So o dia: ");
-    scanf("%d", &numbuer_disk);
-    for(int i = 0;i < numbuer_disk; i++) {
-        char temp[30];
-        fgets(temp, sizeof(temp), stdin);
-        sprintf(buf, "%s %s", buf, temp);
+    printf("Nhap ten may tinh: ");  scanf("%s", computer);
+    getchar();
+    strcpy(buf, computer);
+    int pos = strlen(computer);
+    buf[pos] = 0;
+    pos++;
+    printf("Nhap vao so o dia: \n");
+    scanf("%d", &num_disk);
+    getchar();
+    char disk;
+    unsigned int disk_size;
+    for(int i=0; i<num_disk; i++){
+        printf("Nhap ten o dia %d: ", i+1);         scanf("%c", &disk);
+        printf("Nhap kich thuoc o dia %d: ", i+1);  scanf("%o", &disk_size);
+        getchar();
+        buf[pos] = disk;
+        pos++;
+        memcpy(buf + pos, &disk_size, sizeof(disk_size));
+        pos += sizeof(disk_size);
     }
-    // Gui mang sang server
-    send(client, buf, sizeof(buf), 0);
-    printf("buf: %s", buf);
-    
+    printf("Buffer size: %d\n", pos);
+    send(client, buf, pos, 0);
     close(client);
 }
