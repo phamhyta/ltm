@@ -1,3 +1,3 @@
 # See the results below:
 
-[![Watch the video](https://user-images.githubusercontent.com/71460155/233825197-db058396-150b-4bb3-a9f4-9ae552a16683.png)](https://www.loom.com/share/b7d6439bad124e0fa2eff0f301b838e2)
+[![Watch the video](https://github.com/phamhyta/ltm/assets/71460155/7209d0b2-0fd6-4e38-bdd0-3f8cc3410755)](https://www.loom.com/share/b7d6439bad124e0fa2eff0f301b838e2)
