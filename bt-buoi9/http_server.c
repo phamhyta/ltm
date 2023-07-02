@@ -178,7 +178,7 @@ void *client_thread(void *param)
             {
                 if (strcmp(entry->d_name, ".") != 0 && strcmp(entry->d_name, "..") != 0)
                 {
-                    if (entry->d_type == "DT_REG")
+                    if (entry->d_type == DT_REG)
                     {
                         sprintf(buff, "<h1><i><a style=\"font-weight:100;color:#00d2ff\" href=\"http://localhost:%d/get?file=%s/%s\">%s</a></i></h1>", port, directory, entry->d_name, entry->d_name);
                         send(clientSocket, buff, strlen(buff), 0);
@@ -224,7 +224,7 @@ void *client_thread(void *param)
         {
             if (strcmp(entry->d_name, ".") != 0 && strcmp(entry->d_name, "..") != 0)
             {
-                if (entry->d_type == "DT_REG")
+                if (entry->d_type == DT_REG)
                 {
                     sprintf(buff, "<h1><i><a style=\"font-weight:100;color:#00d2ff\" href=\"http://localhost:%d/get?file=%s/%s\">%s</a></i></h1>", port, cwd, entry->d_name, entry->d_name);
                     send(clientSocket, buff, strlen(buff), 0);
