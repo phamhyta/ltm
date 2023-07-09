@@ -1,0 +1,61 @@
+https://api-stock2.aiotlab-annotation.com/stock/stock_historical_income?ticker=VHM&n_quarters=25
+{
+  data: [
+    year: [2018, 2019, 2020, 2021],
+    value: [
+      1: [ //1,2,3,4 là quarter
+	  {"ticker_income": 6892.9, "change": 0.43},
+          {"ticker_income": 6892.9, "change": 0.43},
+	  {"ticker_income": 6892.9, "change": 0.43},
+          {"ticker_income": 6892.9, "change": 0.43},
+	],
+      2: [
+	  {"ticker_income": 6892.9, "change": 0.43},
+          {"ticker_income": 6892.9, "change": 0.43},
+	  {"ticker_income": 6892.9, "change": 0.43},
+          {"ticker_income": 6892.9, "change": 0.43},
+	],
+      3: [
+	  {"ticker_income": 6892.9, "change": 0.43},
+          {"ticker_income": 6892.9, "change": 0.43},
+	  {"ticker_income": 6892.9, "change": 0.43},
+          {"ticker_income": 6892.9, "change": 0.43},
+	],
+      4: [
+	  {"ticker_income": 6892.9, "change": 0.43},
+          {"ticker_income": 6892.9, "change": 0.43},
+	  {"ticker_income": 6892.9, "change": 0.43},
+          {"ticker_income": 6892.9, "change": 0.43},
+	],
+    ]
+}
+
+
+https://api-stock2.aiotlab-annotation.com/stock/prop_trading_volume_by_stock?ticker=VHM&mode=1d
+https://api-stock2.aiotlab-annotation.com/stock/foreign_trade_volume_by_stock?ticker=VHM&mode=1d
+https://api-stock2.aiotlab-annotation.com/stock/major_holder_trading_volume_by_stock
+
+{
+  "data": {
+    "TotalBuyForeignVol": 3248700,
+    "TotalSellForeignVol": 4005560,
+    "TotalTradeForeignVol": -756860,
+    "TotalBuyForeignVal": 181017945000,
+    "TotalSellForeignVal": 220611187000,
+    "TotalTradeForeignVal": -39593242000,
+    "data": [
+      { x: '2011-01-01', y: -120.1 }, // ngày có thể ở dạng 2023-06-10T00:00:00
+      { x: '2011-02-01', y: -150.6 },
+      { x: '2011-03-01', y: -100.2 },
+      { x: '2011-04-01', y: -130.6 },
+      { x: '2011-05-01', y: -110.1 },
+      { x: '2011-06-01', y: 120.4 },
+      { x: '2011-07-01', y: 145.4 },
+      { x: '2011-08-01', y: 123.9 },
+      { x: '2011-09-01', y: 110.4 },
+      { x: '2011-10-01', y: 157.4 },
+    ]
+  },
+  "code": 200,
+  "message": "Retrieve data sucessfully"
+}
